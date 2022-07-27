@@ -27,63 +27,6 @@ app.engine('hypatia', (filePath, options, callback) => {
 app.set('views', './views');
 app.set('view engine', 'hypatia');
 
-app.get('/', (req, res) => {
-    let bugs;
-    if(Math.random() > 0.87){
-        bugs = (Math.floor(Math.random() * 10))
-        
-    }
-    else{
-        bugs = -1
-    }
-
-    res.render('passItAround', {
-        title:  `99 Bugs`,
-        message:    `99 little bugs in the code!`,
-        outcome:    `99 little bugs in the code!`,
-        message1:   `99 little buuuugs!!!`,
-        content:    `Take one down, patch it around!`,
-        link:       `<a href="http://localhost:3000/${99 + bugs}">See how your patch went?</a>`
-    })
-});
-
-app.get('/:number', (req, res) => {
-    let option1 = "See how your patch went?"
-    let option2 = "Start Over?"
-    let count = parseInt(req.params.number)
-    let bugs;
-
-    if(Math.random() > 0.87){
-    bugs = (Math.floor(Math.random() * 10))
-    
-    }
-    else{
-        bugs = -1
-    }
-    let next = count + bugs
-    if(count > 0){
-        res.render('passItAround', {
-            title:  `${count} Bugs`,
-            message:    `${count} little bugs in the code!`,
-            outcome:    `${count} little bugs in the code!`,
-            message1:   `${count} little buuuugs!!!`,
-            content:    `Take one down, patch it around!`,
-            link:       `<a href="http://localhost:3000/${next}">See how your patch went?</a>`
-        })        
-    }
-    else{
-        res.render('passItAround', {
-            title:  `No More!!`,
-            message:    `No more little bugs in the Code!`,
-            outcome:    `No more little bugs in the code!`,
-            message1:   `No more little buuuugs!!!`,
-            content:    `You fixed them all, banged your head on the wall`,
-            link:       `<a href="http://localhost:3000/">Patch All The Bugs Again?</a>`
-        })
-    }
-
-});
-
 app.get('/greeting', (req, res) => {
     res.render('template', {
         title: 'Greetings',
@@ -96,7 +39,7 @@ app.get('/greeting/:firstName', (req, res) => {
     res.render('template', {
         title: 'Greetings',
         message: 'Greetings!',
-        content: `Howdy there, Sheriff ${req.params.firstName}`
+        content: `Howdy there, Sheriff ${req.params.firstName}!!!!`
     });
 });
 
@@ -124,6 +67,62 @@ app.get('/magic/:question', (req, res) => {
         question:   question + '?',   
         content:    fate
     });
+});
+
+app.get('/', (req, res) => {
+    let bugs;
+    if((Math.random() * 2) > 1.8){
+        bugs = (Math.floor(Math.random() * 5))
+        
+    }
+    else{
+        bugs = -1
+    }
+
+    res.render('passItAround', {
+        title:  `99 Bugs`,
+        message:    `99 little bugs in the code!`,
+        outcome:    `99 little bugs in the code!`,
+        message1:   `99 little buuuugs!!!`,
+        content:    `Take one down, patch it around!`,
+        link:       `<a href="http://localhost:3000/${99 + bugs}">See how your patch went?</a>`
+    })
+});
+
+app.get('/:number', (req, res) => {
+    let count = parseInt(req.params.number)
+    let bugs;
+
+    if((Math.random() * 2) > 1.8){
+        bugs = (Math.floor(Math.random() * 10))
+    }
+    else{
+        bugs = -1
+    }
+
+    let next = count + bugs
+
+    if(count > 0){
+        res.render('passItAround', {
+            title:  `${count} Bugs`,
+            message:    `${count} little bugs in the code!`,
+            outcome:    `${count} little bugs in the code!`,
+            message1:   `${count} little buuuugs!!!`,
+            content:    `Take one down, patch it around!`,
+            link:       `<a href="http://localhost:3000/${next}">See how your patch went?</a>`
+        })        
+    }
+    else{
+        res.render('passItAround', {
+            title:  `No More!!`,
+            message:    `No more little bugs in the Code!`,
+            outcome:    `No more little bugs in the code!`,
+            message1:   `No more little buuuugs!!!`,
+            content:    `You fixed them all, banged your head on the wall`,
+            link:       `<a href="http://localhost:3000/">Patch All The Bugs Again?</a>`
+        })
+    }
+
 });
 
 app.listen(port, () => {
